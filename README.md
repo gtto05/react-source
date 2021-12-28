@@ -1,31 +1,38 @@
-# Context 
+# Hoc
 
 ## 使用
-### 创建 
-**Context.js**
-```javascript
-import React from 'react'
 
-export const ThemeContext = React.createContext()
-export const ThemeProvider = ThemeContext.Provider
-export const ThemeConsumer = ThemeContext.Consumer
+1. 创建一个函数 hoc
+2. 接收一个组件，返回一个组件
+3. 装饰器使用及配置
+```bash
+yarn add @craco/craco
+yarn add 
 ```
-### 生产 
-**ContextPage.js**
 ```javascript
-<ThemeProvider value={theme}>
-  <ContextTypePage />
-  <UserContextPage />
-</ThemeProvider>
+// craco.config.js
+module.exports = {
+  babel:{
+    plugins:[
+      ['@babel/plugin-proposal-decorators',{legacy:true}]
+    ]
+  }
+}
 ```
-### 消费
-1. 类组件 
-  - `static contextType`
-  - `Consumer`
-2. 函数组件 
-  - `Consumer`
-  - `useContext`
-
-## 优点和缺点
-1. 优点：适合**子孙组件数据传递**
-2. 缺点：**耗费性能**，父组件传递的数据更新，会引起所有子组件的重新渲染，慎用
+> **问题：** 有时候不配置.babelrc还是会提示不识别装饰器 ?  
+```json
+// .babelrc
+{
+  "presets": [
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ]
+}
+```
