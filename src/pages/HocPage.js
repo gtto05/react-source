@@ -12,6 +12,7 @@ const hoc = (Cmp) => props => {
 function Child(props) {
   return <div>child-----{props.name}</div>
 }
+const Hoc = hoc(Child)
 
 @hoc
 class ClassChild extends Component {
@@ -20,7 +21,6 @@ class ClassChild extends Component {
   }
 }
 
-const Hoc = hoc(Child)
 
 export default class HocPage extends Component {
   render() {
